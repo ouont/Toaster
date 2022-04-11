@@ -42,8 +42,8 @@ SEEDS="2f234549828b18cf5e991cc884707eb65e503bb2@34.74.129.75:31076,c8890bcde31c2
 PEERS="332dea7332a0c4647a147a08bf50bb2038931e4c@81.30.158.46:26656,4e08eb9d62607d05e3fa3fa52d98a00014c8040b@162.55.90.254:26656,4a701d399a0cd4a577e5b30c9d3cc5d75854936e@95.214.53.132:26456,0c019ac4e4f39d95355926435e50a25ed589915f@89.163.151.226:26656,b65efc14137a426a795b5e78cf34def7e5240231@89.163.164.211:26656,33baa872768e12d4100bce5eb875b90b8739a1d4@185.214.134.154:46656,76862fd5ee017b7b46f65a7ac15da12bba12f7f1@49.12.215.72:26656"
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.archway/config/config.toml
 sed -i.bak -e "s/prometheus = false/prometheus = true/" $HOME/.archway/config/config.toml
-# curl -s "https://github.com/archway-network/testnets/blob/torii/penultimate_genesis.json" | jq '.result.genesis' > $HOME/.archway/config/genesis.json
-curl -s "https://github.com/archway-network/testnets/blob/torii/penultimate_genesis.json" | jq '.result.genesis' > ~/.archway/config/genesis.json
+# curl -s "https://raw.githubusercontent.com/archway-network/testnets/main/torii/penultimate_genesis.json" | jq '.result.genesis' > $HOME/.archway/config/genesis.json
+curl -s "https://raw.githubusercontent.com/archway-network/testnets/main/torii/penultimate_genesis.json" | jq '.result.genesis' > ~/.archway/config/genesis.json
 docker run --rm -it -v $HOME/.archway:/root/.archway archwaynetwork/archwayd:torii-1 unsafe-reset-all
 wget -O addrbook.json https://api.nodes.guru/addrbook_archway.json
 mv addrbook.json $HOME/.archway/config/
